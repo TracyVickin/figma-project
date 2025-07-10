@@ -2,10 +2,19 @@ import React, { useState } from "react";
 import DarkModeToggle from "./DarkModeToggle";
 import SetAlertModal from "./SetAlertModal";
 import AlertsModal from "./AlertsModal";
+import SuccessModal from "./SuccessModal";
 
 export default function Topbar() {
   const [showSetAlert, setShowSetAlert] = useState(false);
   const [showAlerts, setShowAlerts] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+  const handleCreateAlert = () => {
+    setShowSetAlert(false);
+    setShowAlerts(true);
+    setShowSuccessModal(true);
+    setTimeout(() => setShowSuccessModal(false), 2500);
+  };
   return (
     <header className="flex items-center justify-between py-4 px-4 md:px-8 bg-transparent">
       <div>
@@ -33,14 +42,14 @@ export default function Topbar() {
         {showSetAlert && (
           <SetAlertModal 
             onClose={() => setShowSetAlert(false)}
-            onCreateAlert={() => {
-              setShowSetAlert(false);
-              setShowAlerts(true);
-            }}
+            onCreateAlert={handleCreateAlert}
           />
         )}
         {showAlerts && (
           <AlertsModal onClose={() => setShowAlerts(false)} />
+        )}
+        {showSuccessModal && (
+          <SuccessModal onClose={() => setShowSuccessModal(false)} />
         )}
         {/* Notification */}
         <button className="bg-[#525252] p-2 rounded-full text-gray-400 hover:text-cyan-400">

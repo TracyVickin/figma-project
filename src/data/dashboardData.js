@@ -34,9 +34,30 @@ export const priceCards = [
 ];
 
 export const depots = [
-  { name: "NIPCO", location: "Lagos", value: "₦714.26", change: "+0.37", trend: "up" },
-  { name: "Oando PLC", location: "Rivers", value: "₦714.26", change: "+0.37", trend: "up" },
-  { name: "MRS Oil Nigeria P...", location: "Oyo", value: "₦714.26", change: "+0.37", trend: "up" },
+  {
+    name: "NIPCO",
+    location: "Lagos",
+    value: "₦714.26",
+    change: "+0.37",
+    trend: "up",
+    chart: [10, 20, 15, 25, 22, 18, 20, 19, 23, 21, 20, 22]
+  },
+  {
+    name: "Oando PLC",
+    location: "Rivers",
+    value: "₦714.26",
+    change: "+0.37",
+    trend: "up",
+    chart: [12, 18, 22, 20, 19, 23, 25, 24, 22, 21, 20, 19]
+  },
+  {
+    name: "MRS Oil Nigeria P...",
+    location: "Oyo",
+    value: "₦714.26",
+    change: "+0.37",
+    trend: "up",
+    chart: [15, 17, 19, 18, 20, 22, 21, 23, 24, 22, 21, 20]
+  }
 ];
 
 export const depotTabs = ["PMS", "AGO", "DPK", "ICE", "LPG"];

@@ -1,5 +1,6 @@
 import React from "react";
 import { depots, depotTabs } from "../data/dashboardData";
+import { LineChart, Line, ResponsiveContainer, Area, ReferenceLine, LinearGradient, Stop, defs } from "recharts";
 
 function DepotIcon() {
   return (
@@ -18,12 +19,47 @@ function TrendIcon() {
   );
 }
 
-function MiniChart() {
+function MiniChart({ data }) {
+  const chartData = data.map((v, i) => ({ x: i, y: v }));
   return (
-    <svg width="60" height="24" viewBox="0 0 60 24">
-      <polyline fill="none" stroke="#22c55e" strokeWidth="2" points="0,20 10,10 20,12 30,8 40,10 50,6 60,10" />
-      <line x1="0" y1="22" x2="60" y2="22" stroke="#444" strokeDasharray="4 2" />
-    </svg>
+    <ResponsiveContainer width={200} height={50}>
+      <LineChart data={chartData} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
+        <defs>
+          <linearGradient id="miniGreen" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#00FF99" stopOpacity={0.7} />
+            <stop offset="100%" stopColor="#00FF99" stopOpacity={0} />
+          </linearGradient>
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+        <Area
+          type="linear"
+          dataKey="y"
+          stroke={false}
+          fill="url(#miniGreen)"
+          fillOpacity={1}
+        />
+        <Line
+          type="linear"
+          dataKey="y"
+          stroke="#00FF99"
+          strokeWidth={2}
+          dot={false}
+          filter="url(#glow)"
+        />
+        <ReferenceLine
+          y={Math.min(...data)}
+          stroke="#00FF99"
+          strokeDasharray="8 5"
+          strokeOpacity={0.7}
+        />
+      </LineChart>
+    </ResponsiveContainer>
   );
 }
 
@@ -41,7 +77,7 @@ export default function DepotCard() {
               <span className="text-green-400 font-bold text-sm flex items-center"><TrendIcon />{depot.name}</span>
               <span className="text-xs text-gray-400 truncate">{depot.location}</span>
             </div>
-            <div className="flex-1 flex justify-center"><MiniChart /></div>
+            <div className="flex-1 flex justify-center items-center h-[40px] overflow-hidden"><MiniChart data={depot.chart} /></div>
             <div className="flex flex-col items-end min-w-[70px]">
               <span className="text-white font-semibold text-sm">{depot.value}</span>
               <span className="text-green-400 text-xs font-bold">{depot.change}</span>

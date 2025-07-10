@@ -1,6 +1,6 @@
 import React from "react";
 import { depots, depotTabs } from "../data/dashboardData";
-import { LineChart, Line, ResponsiveContainer, Area, ReferenceLine, LinearGradient, Stop, defs } from "recharts";
+import { LineChart, Line, ResponsiveContainer, Area, ReferenceLine} from "recharts";
 
 function DepotIcon() {
   return (

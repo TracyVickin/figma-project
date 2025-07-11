@@ -17,7 +17,7 @@ const mockAlerts = [
   },
 ];
 
-export default function AlertsModal({ onClose }) {
+export default function AlertsModal({ alerts = [], onClose }) {
   const [tab, setTab] = useState("alerts");
 
   return (
@@ -58,7 +58,7 @@ export default function AlertsModal({ onClose }) {
         <div className="flex-1 overflow-y-auto px-6 pb-6 pt-2">
           {tab === "alerts" ? (
             <div className="flex flex-col divide-y divide-[#353535]">
-              {mockAlerts.map((alert, i) => (
+              {alerts.map((alert, i) => (
                 <div key={i} className="py-2">
                   <div className="text-white text-sm font-medium leading-tight">{alert.name}</div>
                   <div className="flex items-center gap-2 text-xs mt-0.5">

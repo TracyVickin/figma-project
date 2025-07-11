@@ -70,11 +70,11 @@ function NotificationIcon({ type }) {
   return null;
 }
 
-export default function NotificationsModal({ onClose }) {
+export default function NotificationsModal({ notifications = [], onClose }) {
   const [tab, setTab] = useState("all");
 
   // Filter notifications by tab
-  const filtered = mockNotifications.filter(n => {
+  const filtered = notifications.filter(n => {
     if (tab === "all") return true;
     if (tab === "comments") return n.type === "comment";
     if (tab === "mentioned") return n.type === "mention";
@@ -122,7 +122,7 @@ export default function NotificationsModal({ onClose }) {
         <div className="flex-1 overflow-y-auto px-8 pb-6 pt-2">
           <div className="flex flex-col relative">
             {filtered.map((n, i) => (
-              <div key={n.id} className="flex gap-4 relative pb-6">
+              <div key={n.id || i} className="flex gap-4 relative pb-6">
                 {/* Timeline line */}
                 {i !== filtered.length - 1 && (
                   <div className="absolute left-5 top-12 h-full w-px bg-[#353535] z-0" />

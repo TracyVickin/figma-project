@@ -1,23 +1,21 @@
 import React, { useState } from "react";
 import AISearchModal from "./AISearchModal";
 
-const categories = [
-  { key: "all", label: "All", icon: <span className="text-cyan-400">&#128269;</span> },
-  { key: "analysis", label: "Analysis", icon: <span className="">&#128202;</span> },
-  { key: "news", label: "News", icon: <span className="">&#128240;</span> },
-  { key: "report", label: "Report", icon: <span className="">&#128196;</span> },
-  { key: "exclusive", label: "Exclusive report", icon: <span className="">&#10010;</span> },
-];
-
-const suggestions = [
-  { code: "PMS", name: "Petroleum Motor Spirit" },
-  { code: "AGO", name: "Automotive Gas Oil" },
-  { code: "DPK", name: "Dual Purpose Kerosene" },
-  { code: "LPG", name: "Liquified Petroleum Gas" },
-  { code: "ICE", name: "ICE Brent Crude" },
-];
-
-export default function SearchModal({ onClose }) {
+export default function SearchModal({ onClose, categories: propCategories, suggestions: propSuggestions }) {
+  const categories = propCategories || [
+    { key: "all", label: "All", icon: <span className="text-cyan-400">&#128269;</span> },
+    { key: "analysis", label: "Analysis", icon: <span className="">&#128202;</span> },
+    { key: "news", label: "News", icon: <span className="">&#128240;</span> },
+    { key: "report", label: "Report", icon: <span className="">&#128196;</span> },
+    { key: "exclusive", label: "Exclusive report", icon: <span className="">&#10010;</span> },
+  ];
+  const suggestions = propSuggestions || [
+    { code: "PMS", name: "Petroleum Motor Spirit" },
+    { code: "AGO", name: "Automotive Gas Oil" },
+    { code: "DPK", name: "Dual Purpose Kerosene" },
+    { code: "LPG", name: "Liquified Petroleum Gas" },
+    { code: "ICE", name: "ICE Brent Crude" },
+  ];
   const [selectedCategory, setSelectedCategory] = useState("report");
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState(0);

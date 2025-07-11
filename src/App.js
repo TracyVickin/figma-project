@@ -13,7 +13,7 @@ function App() {
           <DashboardGrid />
         </main>
         {/* Edit widget button below the main screen, centered */}
-        <div className="w-full flex justify-center py-6">
+        <div className="w-full flex justify-center ">
           <button
             className="px-6 py-2 rounded-full border border-[#888] bg-[#444] text-white text-base font-medium shadow-sm hover:bg-[#555] transition"
             style={{ outline: 'none' }}

@@ -77,7 +77,17 @@ export default function SetAlertModal({ onClose, onCreateAlert }) {
         {/* Buttons */}
         <div className="flex gap-2 mt-2">
           <button onClick={onClose} className="flex-1 bg-[#353535] text-white rounded-full py-2 text-sm font-medium">Cancel</button>
-          <button className="flex-1 bg-[#1CC8B0] text-white rounded-full py-2 text-sm font-medium" onClick={() => { if (onCreateAlert) onCreateAlert(); if (onClose) onClose(); }}>Create alert</button>
+          <button className="flex-1 bg-[#1CC8B0] text-white rounded-full py-2 text-sm font-medium" onClick={() => {
+            if (onCreateAlert) onCreateAlert({
+              condition,
+              direction,
+              price,
+              trigger,
+              expiration,
+              name: alertName || `${condition} crossing ${price}`
+            });
+            if (onClose) onClose();
+          }}>Create alert</button>
         </div>
       </div>
     </div>
